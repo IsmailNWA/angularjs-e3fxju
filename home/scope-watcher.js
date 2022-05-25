@@ -1,11 +1,14 @@
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 export const scopeWatcher = ($scope, propToWatch) => {
-    const subject = new Subject();
-    const watcher = $scope.$watch(propToWatch, (value) => {
-        subject.next(value);
-    });
+  const subject = new Subject();
+  const unregisterWatcher = $scope.$watch(propToWatch, (newValue, oldValue) => {
+    subject.next({ newValue, oldValue });
+  });
 
-
-    return subject.asObservable();
-}
+  return subject.asObservable().pipe(
+    finalize(() => {
+      unregisterWatcher();
+    })
+  );
+};

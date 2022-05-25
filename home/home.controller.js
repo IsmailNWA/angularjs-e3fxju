@@ -8,7 +8,7 @@ class HomeCtrl {
   }
 
   $onInit() {
-    scopeWatcher(this.$scope, 'name').subscribe((value) => {
+    scopeWatcher(this.$scope, () => this.name).subscribe((value) => {
       console.log(value);
     });
   }
