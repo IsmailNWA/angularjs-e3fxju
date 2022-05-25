@@ -1,0 +1,10 @@
+{
+  "name": "angularjs-e3fxju",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@uirouter/angularjs": "1.0.15",
+    "angular": "1.6.9",
+    "rxjs": "^7.5.5"
+  }
+}
